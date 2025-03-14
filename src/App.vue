@@ -27,6 +27,6 @@ const { data, error } = useFetch(url)
 .requests-block {
   display: flex;
   flex-direction: column;
-  margin-top: 45px;
+  margin-top: 25px;
 }
 </style>
