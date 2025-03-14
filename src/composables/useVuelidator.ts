@@ -1,6 +1,16 @@
 import { ref, watchEffect, toValue } from "vue"
 import type { Ref, Reactive } from "vue"
-import type { Rule, Rules } from "../Types"
+
+export interface Rules {
+  [key: string]: Rule;
+}
+
+export interface Rule {
+  required?: boolean
+  maxChars?: number
+  minChars?: number
+  regexp?: RegExp
+}
 
 interface Result {
   isValid: Ref<boolean>,

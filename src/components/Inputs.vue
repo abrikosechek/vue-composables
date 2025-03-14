@@ -15,7 +15,7 @@
 <script setup lang='ts'>
 import { reactive } from 'vue';
 import { useVuelidator } from '../composables/useVuelidator';
-import type { Rules } from "../Types"
+import type { Rules } from "../composables/useVuelidator"
 
 const inputs = reactive({
   username: null,
