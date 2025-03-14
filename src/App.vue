@@ -1,12 +1,15 @@
 <template>
   <Inputs />
 
-  <div class="requests-block">
+  <!-- Field for dynamic request -->
+  <div class="container requests-block">
     <label for="url">Request URL</label>
     <input type="text" v-model="url" id="url" name="url">
 
-    <p>{{ data }}</p>
-    <p>{{ error }}</p>
+    <template v-if="data || error">
+      <p>{{ data }}</p>
+      <p>{{ error }}</p>
+    </template>
   </div>
 </template>
 
@@ -24,7 +27,6 @@ const { data, error } = useFetch(url)
 .requests-block {
   display: flex;
   flex-direction: column;
-  gap: 8px;
   margin-top: 45px;
 }
 </style>

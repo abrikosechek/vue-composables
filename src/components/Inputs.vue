@@ -1,17 +1,15 @@
 <template>
-
   <!-- Inputs with validation -->
-  <form class="form">
-    <!-- <label for="username">Username*</label>
-    <input v-model="inputs.username" id="username" name="username" type="text"> -->
-    <div v-for="(_, name) in inputs" :key="name" class="form__item">
-      <label class="form__item__label" :for="name">{{ name }} <span v-if="rules[name]">*</span></label>
+  <form class="container">
+    <div v-for="(_, name) in inputs" :key="name" class="form-item">
+      <label class="form-item__label" :for="name">{{ name }} <span v-if="rules[name]">*</span></label>
       <input type="text" v-model="inputs[name]" :id="name" :name="name">
-      <p v-if="validatedInputs[name]?.errors.length">{{ validatedInputs[name]?.errors }}</p>
+      <p v-if="validatedInputs[name]?.errors.length" class="form-item__warning">{{ validatedInputs[name]?.errors }}</p>
     </div>
+
+    <p>{{ isValid ? "Form is valid" : "Form is not valid " }}</p>
   </form>
 
-  <p>Form is valid: {{ isValid }}</p>
 </template>
 
 <script setup lang='ts'>
@@ -44,22 +42,19 @@ const { isValid, inputs: validatedInputs } = useVuelidator(inputs, rules)
 </script>
 
 <style scoped lang='scss'>
-.form {
+.form-item {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 24px;
+  gap: 2px;
 
-  &__item {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-
-    &__label {
-      &>span {
-        color: red;
-      }
+  &__label {
+    &>span {
+      color: red;
     }
+  }
+
+  &__warning {
+    color: var(--warning);
   }
 }
 </style>
