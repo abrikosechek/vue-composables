@@ -36,26 +36,35 @@ export function useVuelidator(input: Ref | Reactive<any>, rules: Rules): Result 
     }
 
     for (const [ruleName, ruleValue] of Object.entries(rule)) {
-      if (ruleName === "required") {
-        if (!value) {
+      switch (ruleName) {
+        case "required":
+          if (!value) {
+            result.valid = false
+            result.errors.push("Field required")
+          }
+          break
+        case "maxChars":
+          if (String(value).length > ruleValue) {
+            result.valid = false
+            result.errors.push("More characters than expected")
+          }
+          break
+        case "minChars":
+          if (String(value).length < ruleValue) {
+            result.valid = false
+            result.errors.push("Less characters than expected")
+          }
+          break
+        case "regexp":
+          if (!ruleValue.test(value)) {
+            result.valid = false
+            result.errors.push("RegExp error")
+          }
+          break
+        default:
           result.valid = false
-          result.errors.push("Field required")
-        }
-      } else if (ruleName === "maxChars") {
-        if (String(value).length > ruleValue) {
-          result.valid = false
-          result.errors.push("More characters than expected")
-        }
-      } else if (ruleName === "minChars") {
-        if (String(value).length < ruleValue) {
-          result.valid = false
-          result.errors.push("Less characters than expected")
-        }
-      } else if (ruleName === "regexp") {
-        if (!ruleValue.test(value)) {
-          result.valid = false
-          result.errors.push("RegExp error")
-        }
+          result.errors.push("No such validation rule")
+          break
       }
     }
 
