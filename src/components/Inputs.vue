@@ -1,10 +1,30 @@
 <template>
   <!-- Inputs with validation -->
   <form class="container">
-    <div v-for="(_, name) in inputs" :key="name" class="form-item">
-      <label class="form-item__label" :for="name">{{ name }} <span v-if="rules[name]">*</span></label>
-      <input type="text" v-model="inputs[name]" :id="name" :name="name">
-      <p v-if="validatedInputs[name]?.errors.length" class="form-item__warning">{{ validatedInputs[name]?.errors }}</p>
+    <div
+      v-for="(_, name) in inputs"
+      :key="name"
+      class="form-item"
+    >
+      <label
+        class="form-item__label"
+        :for="name"
+      >
+        {{ name }}
+        <span v-if="rules[name]">*</span>
+      </label>
+      <input
+        type="text"
+        v-model="inputs[name]"
+        :id="name"
+        :name="name"
+      >
+      <p
+        v-if="validatedInputs[name]?.errors.length"
+        class="form-item__warning"
+      >
+        {{ validatedInputs[name]?.errors }}
+      </p>
     </div>
 
     <p>{{ isValid ? "Form is valid" : "Form is not valid " }}</p>
