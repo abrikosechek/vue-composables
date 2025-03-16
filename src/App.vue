@@ -4,12 +4,7 @@
   <!-- Field for dynamic request -->
   <div class="container requests-block">
     <label for="url">Request URL</label>
-    <input
-      type="text"
-      v-model="url"
-      id="url"
-      name="url"
-    >
+    <input type="text" v-model="url" id="url" name="url" />
 
     <template v-if="data || error">
       <p>{{ data }}</p>
@@ -19,13 +14,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import Inputs from './components/Inputs.vue';
-import { useFetch } from './composables/useFetch';
+import { ref } from "vue";
+import Inputs from "./components/Inputs.vue";
+import { useFetch } from "./composables/useFetch";
 
-const url = ref()
+const url = ref();
 
-const { data, error } = useFetch(url)
+const { data, error } = useFetch(url);
 </script>
 
 <style scoped lang="scss">
