@@ -3,7 +3,7 @@
 Usage of composables:
 
 
-useValidator: works like Vuelidate library. Has next rules: required, maxChards, minChars, regexp. Returns object {isValid: boolean, inputs: (info about validating each field)}
+useVuelidator: works like Vuelidate library. Has next rules: required, maxChards, minChars, regexp. Returns object {isValid: boolean, inputs: (info about validating each field)}
 
 
 useFetch: accepts reactive url path, returns { data, error }
